@@ -1,3 +1,6 @@
+import ft_garden_intro
+
+
 class Plant:
     def __init__(self, name: str, height: int, age: int):
         self.name = name
@@ -7,6 +10,9 @@ class Plant:
     def show(self) -> None:
         print(f"{self.name}: {self.height}cm, {self.age} days years old")
 
+
+ft_garden_intro.ft_garden_intro()
+print(__name__)
 
 if __name__ == "__main__":
     rose = Plant("Rose", 25, 30)

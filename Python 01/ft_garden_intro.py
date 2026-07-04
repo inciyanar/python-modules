@@ -1,3 +1,5 @@
+
+
 def ft_garden_intro() -> None:
     plant_name: str = "Rose"
     height: int = 25
@@ -11,4 +13,5 @@ def ft_garden_intro() -> None:
 
 
 if __name__ == "__main__":
+
     ft_garden_intro()
