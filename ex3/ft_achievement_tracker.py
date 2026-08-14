@@ -1,10 +1,12 @@
 import random
 
+
 def gen_player_achievements() -> tuple[set, list]:
     achievement_list: list = ["negotiator", "fighter", "actor", "singer"]
     num = random.randint(1, len(achievement_list))
     selected = random.sample(achievement_list, num)
-    return(set(selected), achievement_list)
+    return (set(selected), achievement_list)
+
 
 if __name__ == "__main__":
     print("=== Achievement Tracker System ===")
@@ -29,7 +31,7 @@ if __name__ == "__main__":
     print()
 
     for player in player_list:
-        others:set = set()
+        others: set = set()
         for next_player in player_list:
             if next_player != player:
                 others = others.union(player_stock[next_player])

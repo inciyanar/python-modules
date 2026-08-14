@@ -1,30 +1,30 @@
 import sys
 
 
-def find_colon(param: str) -> int:
+def colon_finder(text: str) -> int:
     i = 0
-    while i < len(param):
-        if param[i] == ":":
-            return i
+    while i < len(text):
+        if text[i] == ":":
+            return (i)
         i += 1
-    return -1
+    return (-1)
 
 
-def parse_param(param: str):
-    colon_pos = find_colon(param)
-    if colon_pos == -1 or colon_pos == 0 or colon_pos == len(param) - 1:
+def parse_argument(text: str):
+    colon_placement = colon_finder(text)
+    if colon_placement == -1 or colon_placement == 0 or colon_placement == len(text) - 1:
         return None
-    name = param[:colon_pos]
-    quantity_str = param[colon_pos + 1:]
-    return name, quantity_str
+    name = text[:colon_placement]
+    quantity_str = text[colon_placement + 1:]
+    return (name, quantity_str)
 
 
-def build_inventory(args: list) -> dict:
+def inventory_maker(args: list) -> dict:
     inventory: dict = {}
-    for param in args:
-        parsed = parse_param(param)
+    for argument in args:
+        parsed = parse_argument(argument)
         if parsed is None:
-            print(f"Error - invalid parameter '{param}'")
+            print(f"Error - invalid parameter '{argument}'")
             continue
         name, quantity_str = parsed
         if name in inventory:
@@ -36,13 +36,13 @@ def build_inventory(args: list) -> dict:
             print(f"Quantity error for '{name}': invalid literal for int() with base 10: '{quantity_str}'")
             continue
         inventory[name] = quantity
-    return inventory
+    return (inventory)
 
 
 if __name__ == "__main__":
     print("=== Inventory System Analysis ===")
 
-    inventory: dict = build_inventory(sys.argv[1:])
+    inventory: dict = inventory_maker(sys.argv[1:])
     print(f"Got inventory: {inventory}")
 
     item_list: list = list(inventory.keys())

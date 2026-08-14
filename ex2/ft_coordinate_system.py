@@ -21,7 +21,7 @@ def get_player_pos() -> tuple[float, float, float]:
         except ValueError as a:
             print(f"Error on parameter '{test}': {a} ")
             get_player_pos()
-    return()
+    return ()
 
 
 def dis_finder(node1: tuple[float, float, float], node2: tuple[float, float, float]) -> float:
@@ -34,11 +34,9 @@ if __name__ == "__main__":
     print(f"Got a first tuple {coordinates}")
     print(f"It includes: X={coordinates[0]},"
           f"Y={coordinates[1]}, Z={coordinates[2]}")
-    res = round(dis_finder(coordinates, (0,0,0)), 4)
+    res = round(dis_finder(coordinates, (0, 0, 0)), 4)
     print(f"Distance to center: {res}")
     print("Get a second set of coordinates")
     coordinates2 = get_player_pos()
     res2 = round(dis_finder(coordinates, coordinates2), 4)
     print(f"Distance between the 2 sets of coordinates {res2}")
-
-    #   math.sqrt(22)
