@@ -10,17 +10,22 @@ def colon_finder(text: str) -> int:
     return (-1)
 
 
-def parse_argument(text: str):
+def parse_argument(text: str) -> tuple[str, str] | None:
     colon_placement = colon_finder(text)
-    if colon_placement == -1 or colon_placement == 0 or colon_placement == len(text) - 1:
+    is_invalid = (
+        colon_placement == -1
+        or colon_placement == 0
+        or colon_placement == len(text) - 1
+    )
+    if is_invalid:
         return None
     name = text[:colon_placement]
     quantity_str = text[colon_placement + 1:]
     return (name, quantity_str)
 
 
-def inventory_maker(args: list) -> dict:
-    inventory: dict = {}
+def inventory_maker(args: list[str]) -> dict[str, int]:
+    inventory: dict[str, int] = {}
     for argument in args:
         parsed = parse_argument(argument)
         if parsed is None:
@@ -33,7 +38,10 @@ def inventory_maker(args: list) -> dict:
         try:
             quantity = int(quantity_str)
         except ValueError:
-            print(f"Quantity error for '{name}': invalid literal for int() with base 10: '{quantity_str}'")
+            print(
+                f"Quantity error for '{name}': invalid literal for "
+                f"int() with base 10: '{quantity_str}'"
+            )
             continue
         inventory[name] = quantity
     return (inventory)
@@ -42,10 +50,10 @@ def inventory_maker(args: list) -> dict:
 if __name__ == "__main__":
     print("=== Inventory System Analysis ===")
 
-    inventory: dict = inventory_maker(sys.argv[1:])
+    inventory: dict[str, int] = inventory_maker(sys.argv[1:])
     print(f"Got inventory: {inventory}")
 
-    item_list: list = list(inventory.keys())
+    item_list: list[str] = list(inventory.keys())
     print(f"Item list: {item_list}")
 
     total_quantity: int = sum(inventory.values())
@@ -63,8 +71,14 @@ if __name__ == "__main__":
                 most_item = item
             if inventory[item] < inventory[least_item]:
                 least_item = item
-        print(f"Item most abundant: {most_item} with quantity {inventory[most_item]}")
-        print(f"Item least abundant: {least_item} with quantity {inventory[least_item]}")
+        print(
+            f"Item most abundant: {most_item} "
+            f"with quantity {inventory[most_item]}"
+        )
+        print(
+            f"Item least abundant: {least_item} "
+            f"with quantity {inventory[least_item]}"
+        )
 
     inventory.update({"magic_item": 1})
     print(f"Updated inventory: {inventory}")
