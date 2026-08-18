@@ -8,7 +8,8 @@ def arg_checker() -> bool:
         return False
     return True
 
-def main()-> None:
+
+def main() -> None:
     print("=== Cyber Archives Recovery & Preservation ===")
     print(f"Accessing file '{sys.argv[1]}'")
 
@@ -29,14 +30,23 @@ def main()-> None:
 
     print()
     print("Transform data:")
-    print(---)
+    print("---")
 
     splited_content: list[str] = content.split('\n')
     "\n".join(line + '#' for line in splited_content)
-    print(splited_content)
     print()
-    print(---)
-    print("Enter new file name (or empty)")
+    print("---")
+    new_file = input("Enter new file name (or empty):")
+    new_content = open(new_file, "w")
+
+    for line in splited_content:
+        print(line, end="#\n", file=new_content)
+    new_content = open(new_file, "r")
+    content2: str = new_content.read()
+    print(content2)
+
+    new_content.close()
+
 
 if __name__ == "__main__":
     if arg_checker() is True:
