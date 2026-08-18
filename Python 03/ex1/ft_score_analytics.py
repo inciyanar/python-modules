@@ -2,12 +2,11 @@ import sys
 
 
 class ArgumentError (Exception):
-    def __str__(self):
+    def __str__(self) -> str:
         return ("No argument provided")
 
 
 def main_dude() -> None:
-
     try:
         if len(sys.argv) <= 1:
             raise ArgumentError()

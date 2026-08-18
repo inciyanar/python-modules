@@ -5,7 +5,7 @@ if __name__ == "__main__":
     print("Program name:", sys.argv[0])
     length: int = len(sys.argv)
     if length == 1:
-        print("No argument provided!")
+        print("No arguments provided!")
     else:
         print(f"Arguments received: {length - 1}")
         for i in range(1, length):
