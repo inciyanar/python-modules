@@ -16,7 +16,8 @@ def main() -> None:
     try:
         file: typing.TextIO = open(sys.argv[1], "r")
     except OSError as a:
-        print(f"[STDERR] Error opening file '{sys.argv[1]}': {a}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{sys.argv[1]}': {a}",
+              file=sys.stderr)
         return
 
     print("---")
@@ -33,20 +34,18 @@ def main() -> None:
     print("---")
     print()
 
-    splited_content: list[str] =content.rstrip('\n').split('\n')
-
+    splited_content: list[str] = content.rstrip('\n').split('\n')
     transformed_content = "\n".join(line + '#' for line in splited_content)
     print(transformed_content)
 
     print()
     print("---")
 
-    print("Enter new file name (or empty):", end="")
+    print("Enter new file name (or empty):", end="", flush=True)
     new_file = sys.stdin.readline().rstrip("\n")
     if not new_file:
         print("Not saving data.")
         return
-
 
     try:
         new_content = open(new_file, "w")
@@ -55,10 +54,12 @@ def main() -> None:
         new_content.close()
         print(f"Data saved in file '{new_file}'")
     except OSError as a:
-        print(f"[STDERR] Error handling file '{new_file}': {a}", file=sys.stderr)
-
+        print(f"[STDERR] Error handling file '{new_file}': {a}",
+              file=sys.stderr)
 
 
 if __name__ == "__main__":
     if arg_checker() is True:
         main()
+
+

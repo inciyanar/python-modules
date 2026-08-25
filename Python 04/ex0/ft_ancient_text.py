@@ -8,7 +8,8 @@ def arg_checker() -> bool:
         return False
     return True
 
-def main()-> None:
+
+def main() -> None:
     print("=== Cyber Archives Recovery ===")
     print(f"Accessing file '{sys.argv[1]}'")
 

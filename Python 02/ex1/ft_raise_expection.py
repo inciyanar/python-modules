@@ -17,7 +17,7 @@ def test_temperature() -> None:
 	print("Let's check out the temperature:")
 	print()
 
-	to_test: list[str] = ["4", "incisozluk", "?", "-5"]
+	to_test: list[str] = ["450", "8", "incisozluk", "?", "-5"]
 	for path in to_test:
 		print(f"-For {path} input value:")
 		input_temperature(path)

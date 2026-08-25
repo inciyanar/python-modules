@@ -33,10 +33,10 @@ def plant_checker(test: str) -> None:
 	else:
 		raise PlantError(test)
 
-def garden_checker(bool: bool) -> None:
-	if bool == True:
+def garden_checker(key: bool) -> None:
+	if key == True:
 		print("Everything is fine.")
-	if bool == False:
+	if key == False:
 		raise GardenError
 
 def error_handler():
