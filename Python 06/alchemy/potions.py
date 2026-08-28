@@ -1,7 +1,7 @@
-def healing_potion(fire: str, water: str) -> str:
-    return (f"Healing potion brewed with '{fire}' and '{water}'.")
+def healing_potion() -> str:
+    return ("Healing potion brewed with 'Earth element created' and 'Air element created'")
 
 
-def strength_potion(fire: str, water: str) -> str:
-    return (f"Strength potion brewed with '{fire}' and '{water}'.")
+def strength_potion() -> str:
+    return ("Healing potion brewed with 'Fire element created' and 'Water element created'")
 

@@ -1,14 +1,14 @@
-from alchemy import potions
-
+import alchemy
 
 def main() -> None:
-    print("=== Distillation ===")
-    print("Direct access to a alchemy/potions.py")
-    print("Testing strength_potion", end="")
-    print(potions.strength_potion("Fire", "Water"))
-    print("Testing healing_potion", end="")
-    print(potions.healing_potion("Fire", "Water"))
+    print("=== Distillation 1 ===")
+    print("Using :'import alchemy' structure to access potions")
+    print("Testing strength_potion:", end=" ")
+    print(alchemy.strength_potion())
+    print("Testing heal alias:", end=" ")
+    print(alchemy.heal())
 
 
 if __name__ == "__main__":
     main()
+
