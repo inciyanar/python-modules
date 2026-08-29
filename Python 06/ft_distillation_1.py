@@ -1,5 +1,6 @@
 import alchemy
 
+
 def main() -> None:
     print("=== Distillation 1 ===")
     print("Using :'import alchemy' structure to access potions")
@@ -11,4 +12,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
