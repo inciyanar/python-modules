@@ -2,7 +2,7 @@ from alchemy.elements import create_air
 
 
 def main() -> None:
-    print("Accessing the alchemy module using 'import alchemy'")
+    print("Accessing alchemy/elements.py using 'from ... import ...' structure")
     print("Testing create_air:", end=" ")
     print(create_air())
 
