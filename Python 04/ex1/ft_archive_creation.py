@@ -4,7 +4,7 @@ import typing
 
 def arg_checker() -> bool:
     if len(sys.argv) != 2:
-        print("Usage: ft_ancient_text.py <file>")
+        print("Usage: ft_ancient_text.py <file>", "selam")
         return False
     return True
 
