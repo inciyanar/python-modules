@@ -71,20 +71,51 @@ class TextProcessor(DataProcessor):
 class LogProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
         if isinstance(data, dict) is True:
+            for key, value in data.items():
+                if not isinstance(key, str) or not isinstance(value, str):
+                    return (False)
+            return (True)
+        if isinstance(data, list) is True:
             for item in data:
-                if isinstance(item, str) is False:
+                if self.validate(item) is False:
                     return (False)
             return (True)
         return (False)
 
-    def ingest(self, data: dict[str: str]) -> None:
+    def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
         if self.validate(data) is False:
             raise Exception("Improper log data")
-     git add    for
+        if isinstance(data, list):
+            for item in data:
+                item = item["log_level"] + ": " + item["log_message"]
+                self.data_list.append((self.rank, item))
+                self.rank += 1
+        else:
+                output_format = data["log_level"] + ": " + data["log_message"]
+                self.data_list.append((self.rank, output_format))
+                self.rank += 1
 
 
 if __name__ == "__main__":
     print("=== Code Nexus - Data Processor ===")
     print()
+    numero = NumericProcessor()
+
     print("Testing Numeric Processor...")
-    print("Trying to validate input")
+    print("Trying to validate input '42':", numero.validate(42))
+    print("Trying to validate input 'Hello':",  numero.validate("Hello"))
+
+    print("Test invalid ingestion of string 'foo' without prior validation:")
+    try:
+        numero.ingest("foo")
+    except Exception as error:
+        print("Got exception:", error)
+    data =  [1, 2, 3, 4, 5]
+    print(f"Processing data: {data}")
+    numero.ingest(data)
+    print("Extracting 3 values...")
+    for _ in range(3):
+        rank, value = numero.output()
+        print(f"Numeric value {rank}: {value}")
+
+    print("Testing Text Processor ")
