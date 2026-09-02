@@ -1,5 +1,6 @@
 import alchemy.elements
 
+
 def main() -> None:
     print("Accessing alchemy/elements.py using 'import ...' structure")
     print("Testing create_earth:", end=" ")
