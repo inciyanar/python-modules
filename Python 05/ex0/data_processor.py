@@ -16,6 +16,8 @@ class DataProcessor(ABC):
         pass
 
     def output(self) -> tuple[int, str]:
+        if not self.data_list:
+            raise Exception("List is empty.")
         to_go: tuple[int, str] = self.data_list[0]
         self.data_list.pop(0)
         return (to_go)
@@ -87,8 +89,8 @@ class LogProcessor(DataProcessor):
             raise Exception("Improper log data")
         if isinstance(data, list):
             for item in data:
-                item = item["log_level"] + ": " + item["log_message"]
-                self.data_list.append((self.rank, item))
+                new_item = item["log_level"] + ": " + item["log_message"]
+                self.data_list.append((self.rank, new_item))
                 self.rank += 1
         else:
                 output_format = data["log_level"] + ": " + data["log_message"]
@@ -107,15 +109,47 @@ if __name__ == "__main__":
 
     print("Test invalid ingestion of string 'foo' without prior validation:")
     try:
-        numero.ingest("foo")
+        numero.ingest("foo")  # type: ignore
     except Exception as error:
         print("Got exception:", error)
-    data =  [1, 2, 3, 4, 5]
-    print(f"Processing data: {data}")
-    numero.ingest(data)
+    number_data = [1, 2, 3, 4, 5]
+    print(f"Processing data: {number_data}")
+    numero.ingest(number_data)
     print("Extracting 3 values...")
     for _ in range(3):
         rank, value = numero.output()
         print(f"Numeric value {rank}: {value}")
 
+    print()
     print("Testing Text Processor ")
+    texto = TextProcessor()
+    print("Trying to validate input 'Hello':", texto.validate("Hello"))
+    text_data = ["Hello", "Nexus", "World"]
+    texto.ingest(text_data)
+    print("Processing data:", text_data)
+    print("Extracting 1 value...")
+    for _ in range(3):
+        rank, value = texto.output()
+        print(f"Text value {rank}: {value}")
+    texto2 = TextProcessor()
+    text_data2: list[str] = []
+    texto2.ingest(text_data2)
+    try:
+        texto2.output()
+    except Exception as error:
+        print(f"{error}")
+
+    print("Testing Log Processor...")
+    logo = LogProcessor()
+    print("Trying to validate input 'Hello':", logo.validate("Hello"))
+    logo.ingest
+
+
+
+
+
+
+
+
+
+
