@@ -142,7 +142,15 @@ if __name__ == "__main__":
     print("Testing Log Processor...")
     logo = LogProcessor()
     print("Trying to validate input 'Hello':", logo.validate("Hello"))
-    logo.ingest
+    log_data: list[dict[str, str]] = [{"NOTICE": "Connection to server"}, {"ERROR": "Unauthorized access!!"}]
+    logo.validate(log_data)
+    print("Processing data:", log_data)
+    print("Extracting 2 values...")
+    logo.ingest(log_data)
+    for _ in range(2):
+        rank, value = logo.output()
+        print(f"Log entry {rank}: {value}")
+
 
 
 
