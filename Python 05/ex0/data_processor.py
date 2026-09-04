@@ -93,9 +93,9 @@ class LogProcessor(DataProcessor):
                 self.data_list.append((self.rank, new_item))
                 self.rank += 1
         else:
-                output_format = data["log_level"] + ": " + data["log_message"]
-                self.data_list.append((self.rank, output_format))
-                self.rank += 1
+            output_format = data["log_level"] + ": " + data["log_message"]
+            self.data_list.append((self.rank, output_format))
+            self.rank += 1
 
 
 if __name__ == "__main__":
@@ -109,10 +109,10 @@ if __name__ == "__main__":
 
     print("Test invalid ingestion of string 'foo' without prior validation:")
     try:
-        numero.ingest("foo")  # type: ignore
+        numero.ingest("foo")
     except Exception as error:
         print("Got exception:", error)
-    number_data = [1, 2, 3, 4, 5]
+    number_data : list[int | float]= [1, 2, 3, 4, 5]
     print(f"Processing data: {number_data}")
     numero.ingest(number_data)
     print("Extracting 3 values...")
@@ -124,40 +124,35 @@ if __name__ == "__main__":
     print("Testing Text Processor ")
     texto = TextProcessor()
     print("Trying to validate input 'Hello':", texto.validate("Hello"))
+    print("Trying to validate input '42':", texto.validate(42))
     text_data = ["Hello", "Nexus", "World"]
     texto.ingest(text_data)
     print("Processing data:", text_data)
-    print("Extracting 1 value...")
+    print("Extracting 3 value...")
     for _ in range(3):
         rank, value = texto.output()
         print(f"Text value {rank}: {value}")
     texto2 = TextProcessor()
     text_data2: list[str] = []
     texto2.ingest(text_data2)
+    print("Controlling empthy list:", end=" ")
     try:
         texto2.output()
     except Exception as error:
         print(f"{error}")
 
+    print()
     print("Testing Log Processor...")
     logo = LogProcessor()
     print("Trying to validate input 'Hello':", logo.validate("Hello"))
-    log_data: list[dict[str, str]] = [{"NOTICE": "Connection to server"}, {"ERROR": "Unauthorized access!!"}]
-    logo.validate(log_data)
+    log_data: list[dict[str, str]] = [
+        {"log_level": "NOTICE", "log_message": "Connection to server"},
+        {"log_level": "ERROR", "log_message": "Unauthorized access!!"}
+    ]
+    print("Trying to validate input 'log_data':", logo.validate(log_data))
     print("Processing data:", log_data)
     print("Extracting 2 values...")
     logo.ingest(log_data)
     for _ in range(2):
         rank, value = logo.output()
         print(f"Log entry {rank}: {value}")
-
-
-
-
-
-
-
-
-
-
-
