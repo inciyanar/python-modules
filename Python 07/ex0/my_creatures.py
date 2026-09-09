@@ -1,0 +1,42 @@
+import abc
+
+
+class Creature(abc.ABC):
+    def __init__(self, name: str, type_cre: str):
+        self.name: str = name
+        self.type: str = type_cre
+
+    @abc.abstractmethod
+    def attack(self) -> None:
+        pass
+
+    def describe(self) -> str:
+        return(f"{self.name} is a"
+                f" {self.type} type creature.")
+
+class Flameling(Creature):
+    def __init__(self):
+        super().__init__("Flameling", "Fire")
+    def attack(self) -> str:
+        return ("Flameling uses Ember!")
+
+class Pyrodon(Creature):
+    def __init__(self):
+        super().__init__("Pyrodon", "Fire/Flying")
+
+    def attack(self) -> str:
+        return ("Pyrodon uses Flamethrower!")
+
+class Aquabub(Creature):
+    def __init__(self):
+        super().__init__("Aquabub", "Water")
+
+    def attack(self) -> str:
+        return ("Aquabub uses Water Gun!")
+
+class Torragon(Creature):
+    def __init__(self):
+         super().__init__("Torragon", "Water")
+
+    def attack(self) -> str:
+        return ("Torragon uses Hydro Pump!")
