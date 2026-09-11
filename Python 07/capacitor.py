@@ -1,0 +1,28 @@
+from ex1 import HealingCreatureFactory, TransformCreatureFactory
+
+if __name__ == "__main__":
+    heal_factory = HealingCreatureFactory()
+    print("Testing Creature with healing capability")
+    print("base:")
+    base_heal = heal_factory.create_base()
+    print(base_heal.describe())
+    print(base_heal.attack())
+    print(base_heal.heal())
+    envolved_heal = heal_factory.create_evolved()
+    print("envolved:")
+    print(envolved_heal.describe())
+    print(envolved_heal.attack())
+    print(envolved_heal.heal())
+    print()
+    print("Testing Creature with transform capability")
+    print("base:")
+    transform_factory = TransformCreatureFactory()
+    base_trans = transform_factory.create_base
+    print(base_trans.describe())
+    print(base_trans.attack())
+    print(base_trans.heal())
+    print("envolved:")
+    envolved_trans = transform_factory.create_evolved()
+    print(envolved_trans.describe())
+    print(envolved_trans.attack())
+    print(envolved_trans.heal())

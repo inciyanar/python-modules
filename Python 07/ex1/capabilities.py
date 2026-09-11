@@ -3,7 +3,7 @@ import abc
 
 class HealCapability(abc.ABC):
     @abc.abstractmethod
-    def heal(self, target) -> None:
+    def heal(self, target: str) -> None:
         pass
 
 class TransformCapability(abc.ABC):
@@ -17,10 +17,3 @@ class TransformCapability(abc.ABC):
     @abc.abstractmethod
     def revert(self) -> str:
         return("Revert method")
-
-    def attack(self) -> str:
-        if self.transformed:
-            return ("boosted strike!")
-        else:
-            return ("attacks normally")
-
