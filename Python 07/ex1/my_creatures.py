@@ -11,4 +11,14 @@ class Sproutling(Creature, HealCapability):
     def heal(self, target = None) -> str:
         return (f"{self.name} heals itself for a small amount")
 
-	
+
+class Blomelle(Creature, HealCapability):
+    def __init__(self) -> None:
+        Creature.__init__(self, "Blomelle", "Grass/Fairy")
+
+    def attack(self) -> str:
+        return (f"{self.name} uses Petal Dance!")
+
+    def heal(self, target=None) -> str:
+        return (f"{self.name} heals itself and others for a large amount")
+
