@@ -7,12 +7,13 @@ class Creature(abc.ABC):
         self.type: str = type_cre
 
     @abc.abstractmethod
-    def attack(self) -> None:
+    def attack(self) -> str:
         pass
 
     def describe(self) -> str:
-        return(f"{self.name} is a"
+        return (f"{self.name} is a"
                 f" {self.type} type creature.")
+
 
 class Flameling(Creature):
     def __init__(self):
@@ -21,12 +22,14 @@ class Flameling(Creature):
     def attack(self) -> str:
         return ("Flameling uses Ember!")
 
+
 class Pyrodon(Creature):
     def __init__(self):
         super().__init__("Pyrodon", "Fire/Flying")
 
     def attack(self) -> str:
         return ("Pyrodon uses Flamethrower!")
+
 
 class Aquabub(Creature):
     def __init__(self):
@@ -35,9 +38,10 @@ class Aquabub(Creature):
     def attack(self) -> str:
         return ("Aquabub uses Water Gun!")
 
+
 class Torragon(Creature):
     def __init__(self):
-         super().__init__("Torragon", "Water")
+        super().__init__("Torragon", "Water")
 
     def attack(self) -> str:
         return ("Torragon uses Hydro Pump!")

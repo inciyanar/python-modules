@@ -7,6 +7,7 @@ class ExportPlugin(Protocol):
     def process_output(self, data: list[tuple[int, str]]) -> None:
         ...
 
+
 class CSVExportPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
         print("CSV Output:")
@@ -14,6 +15,7 @@ class CSVExportPlugin:
         for rank, value in data:
             values.append(value)
         print(",". join(values))
+
 
 class JSONExportPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
@@ -23,7 +25,6 @@ class JSONExportPlugin:
             sliced.append(f'"item_{rank}:", "{value}"')
         json_line = "{" + ", ".join(sliced) + "}"
         print(json_line)
-
 
 
 class DataProcessor(ABC):
@@ -136,7 +137,8 @@ class DataStream:
                     processor.ingest(item)
                     break
             else:
-                print(f"DataStream error - Can't process element in stream: {item}")
+                print(f"DataStream error -"
+                      f"Can't process element in stream: {item}")
 
     def print_processors_stats(self) -> None:
         print("== DataStream statistics ==")
@@ -144,8 +146,10 @@ class DataStream:
             print("No processor found, no data")
             return
         for processor in self.processors:
-            nameof_class = type(processor).__name__.replace("Processor", " Processor")
-            print(f"{nameof_class}: total {processor.rank} items processed, remaining {len(processor.data_list)} on processor")
+            nameof_class = type(processor).__name__.replace("Processor",
+                                                            " Processor")
+            print(f"{nameof_class}: total {processor.rank} items processed,"
+                  f"remaining {len(processor.data_list)} on processor")
 
     def output_pipeline(self, nb: int, plugin: ExportPlugin) -> None:
         for processor in self.processors:
@@ -175,7 +179,8 @@ if __name__ == "__main__":
     print()
 
     batch = ["Hello world", [3.14, -1, 2.71],
-             [{"log_level": "WARNING", "log_message": "Telnet access! Use ssh instead"},
+             [{"log_level": "WARNING", "log_message":
+               "Telnet access! Use ssh instead"},
               {"log_level": "INFO", "log_message": "User wil is connected"}],
              42, ["Hi", "five"]]
 
@@ -193,7 +198,8 @@ if __name__ == "__main__":
 
     batch2 = [21, ["I love AI", "LLMs are wonderful", "Stay healthy"],
               [{"log_level": "ERROR", "log_message": "500 server crash"},
-               {"log_level": "NOTICE", "log_message": "Certificate expires in 10 days"}],
+               {"log_level": "NOTICE", "log_message":
+                "Certificate expires in 10 days"}],
               [32, 42, 64, 84, 128, 168], "World hello"]
 
     print("Send another batch of data:", batch2)

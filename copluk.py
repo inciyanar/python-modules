@@ -1,20 +1,20 @@
-class Plant:
-    def __init__(self, name: str):
-        self.name = name
+# class Plant:
+#     def __init__(self, name: str):
+#         self.name = name
 
-    @staticmethod
-    def show(name):
-        print("selam")
+#     @staticmethod
+#     def show(name):
+#         print("selam")
 
-class Worker(Plant):
-    def __init__(self, name:str, age: int, department: str):
-        super().__init__(name)
-        self.department= department
-    def show(self):
-        super().show()
+# class Worker(Plant):
+#     def __init__(self, name:str, age: int, department: str):
+#         super().__init__(name)
+#         self.department= department
+#     def show(self):
+#         super().show()
 
-if __name__ == "__main__":
-    a = Plant.show("selam")
+# if __name__ == "__main__":
+#     a = Plant.show("selam")
 
 # def __repr__(self):
 #         return "ğ" + self._name + "ğ"
@@ -55,3 +55,56 @@ if __name__ == "__main__":
 # # tup3: tuple = tup1 + tup2
 # # print
 
+
+# from abc import ABC, abstractmethod
+
+
+# class printer(ABC):
+#     def __init__(self):
+#         self.number = 0
+
+#     def printer_func(self):
+#         pass
+
+
+# class abc_printer(printer):
+#     def printer_func(self):
+#         print("hi")
+
+
+# if __name__ == "__main__":
+#     obj = abc_printer()
+#     obj.printer_func()
+#     print(type(printer))
+
+import abc
+from typing import Protocol
+
+
+class inci:
+    def __init__(self):
+        self.age = 21
+
+    def ager(self):
+        print(f"{self.age + 1}")
+
+
+class yasin (abc.ABC):
+    def ager(self):
+        print(f"yasin {self.age - 1}")
+
+
+class fatih (Protocol):
+    pass
+
+
+if __name__ == "__main__":
+    first = inci()
+    second = yasin()
+
+    print(type(first))
+    print(type(second))
+    print(type(inci))
+    print(type(yasin))
+    print(type(fatih))
+    print(type(yasin))

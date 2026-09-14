@@ -106,13 +106,14 @@ if __name__ == "__main__":
     print("Testing Numeric Processor...")
     print("Trying to validate input '42':", numero.validate(42))
     print("Trying to validate input 'Hello':",  numero.validate("Hello"))
-
     print("Test invalid ingestion of string 'foo' without prior validation:")
+
     try:
         numero.ingest("foo")
     except Exception as error:
         print("Got exception:", error)
-    number_data : list[int | float]= [1, 2, 3, 4, 5]
+
+    number_data: list[int | float] = [1, 2, 3, 4, 5]
     print(f"Processing data: {number_data}")
     numero.ingest(number_data)
     print("Extracting 3 values...")
@@ -125,6 +126,12 @@ if __name__ == "__main__":
     texto = TextProcessor()
     print("Trying to validate input 'Hello':", texto.validate("Hello"))
     print("Trying to validate input '42':", texto.validate(42))
+
+    try:
+        texto.ingest(5)
+    except Exception as error:
+        print(f"Got exception: {error}")
+
     text_data = ["Hello", "Nexus", "World"]
     texto.ingest(text_data)
     print("Processing data:", text_data)
@@ -132,6 +139,7 @@ if __name__ == "__main__":
     for _ in range(3):
         rank, value = texto.output()
         print(f"Text value {rank}: {value}")
+
     texto2 = TextProcessor()
     text_data2: list[str] = []
     texto2.ingest(text_data2)

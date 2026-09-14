@@ -1,6 +1,7 @@
 import abc
 from . my_creatures import Creature, Flameling, Aquabub, Pyrodon, Torragon
 
+
 class CreatureFactory(abc.ABC):
     def __init__(self):
         pass
@@ -13,12 +14,14 @@ class CreatureFactory(abc.ABC):
     def create_evolved(self) -> Creature:
         pass
 
+
 class FlameFactory(CreatureFactory):
     def create_base(self) -> Creature:
         return Flameling()
 
     def create_evolved(self) -> Creature:
         return Pyrodon()
+
 
 class AquaFactory(CreatureFactory):
     def create_base(self) -> Creature:
