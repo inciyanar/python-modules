@@ -53,4 +53,4 @@ class DefensiveStrategy(BattleStrategy):
     def is_valid(self, creature):
         return(isinstance(creature, HealCapability))
 
-
+    
