@@ -36,6 +36,7 @@ class AggressiveStrategy(BattleStrategy):
     def act(self, creature: Creature) -> None:
         if self.is_valid(creature) is False:
             raise creature_Error(creature, "Aggressive")
+        assert isinstance(creature, TransformCapability)
         print(f"{creature.transform()}")
         print(f"{creature.attack()}")
         print(f"{creature.revert()}")
@@ -47,10 +48,9 @@ class DefensiveStrategy(BattleStrategy):
     def act(self, creature: Creature) -> None:
         if self.is_valid(creature) is False:
             raise creature_Error(creature, "Defensive")
+        assert isinstance(creature, HealCapability)
         print(f"{creature.attack()}")
         print(f"{creature.heal()}")
 
     def is_valid(self, creature):
         return(isinstance(creature, HealCapability))
-
-    
