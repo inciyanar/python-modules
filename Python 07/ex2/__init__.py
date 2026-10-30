@@ -1,5 +1,5 @@
-from .strategies import BattleStrategy, NormalStrategy, AggressiveStrategy, DefensiveStrategy, creature_Error
+from .strategies import BattleStrategy, NormalStrategy
+from .strategies import AggressiveStrategy, DefensiveStrategy, creatureError
 
-__all__ = ["BattleStrategy", "NormalStrategy", "AggressiveStrategy", "DefensiveStrategy", "creature_Error"]
-
-
+__all__ = ["BattleStrategy", "NormalStrategy", "AggressiveStrategy",
+           "DefensiveStrategy", "creatureError"]

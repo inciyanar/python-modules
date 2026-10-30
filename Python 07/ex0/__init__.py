@@ -1,4 +1,4 @@
 from .factories import CreatureFactory, FlameFactory, AquaFactory
-from.battle import Creature
+from .my_creatures import Creature
 
 __all__ = ["CreatureFactory", "FlameFactory", "AquaFactory", "Creature"]

@@ -16,9 +16,10 @@ def creature_fighter(cre_1: CreatureFactory, cre_2: CreatureFactory) -> None:
     print("vs.")
     base2 = cre_2.create_base()
     print(base2.describe())
-    print( "fight!")
+    print("fight!")
     print(base1.attack())
     print(base2.attack())
+
 
 if __name__ == "__main__":
     flame_factory = FlameFactory()
@@ -33,12 +34,3 @@ if __name__ == "__main__":
     print("Testing battle")
     creature_fighter(flame_factory, aqua_factory)
     print()
-
-    try:
-        CreatureFactory()
-    except TypeError as error:
-        print(f"Got an exception: {error}")
-
-
-
-

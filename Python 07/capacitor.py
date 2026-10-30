@@ -24,7 +24,6 @@ if __name__ == "__main__":
     print(base_trans.transform())
     print(base_trans.attack())
     print(base_trans.revert())
-    print(base_trans.attack())
     print("envolved:")
     envolved_trans = transform_factory.create_evolved()
     print(envolved_trans.describe())
@@ -32,4 +31,3 @@ if __name__ == "__main__":
     print(envolved_trans.transform())
     print(envolved_trans.attack())
     print(envolved_trans.revert())
-    print(envolved_trans.attack())

@@ -3,7 +3,7 @@ from . my_creatures import Creature, Flameling, Aquabub, Pyrodon, Torragon
 
 
 class CreatureFactory(abc.ABC):
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     @abc.abstractmethod
@@ -29,4 +29,3 @@ class AquaFactory(CreatureFactory):
 
     def create_evolved(self) -> Creature:
         return Torragon()
-
