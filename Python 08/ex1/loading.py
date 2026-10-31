@@ -28,7 +28,7 @@ def generate_data() -> "numpy.ndarray":
     return (values)
 
 
-def data_processor(data: list[int]) -> DataFrame:
+def data_processor(data: list[int]) -> "DataFrame":
     import pandas
     data_frame = pandas.DataFrame({"signal": data})
     print(data_frame["signal"].mean())
@@ -37,10 +37,10 @@ def data_processor(data: list[int]) -> DataFrame:
     return (data_frame)
 
 
-def png_visualizer(data: "DataFrame") -> None:
+def png_visualizer(data: "pandas.DataFrame") -> None:
     import matplotlib.pyplot
     matplotlib.pyplot.plot(data["signal"])
-    matplotlib.pyplot.savefig()
+    matplotlib.pyplot.savefig("matrix_analysis.png")
 
 
 if __name__ == "__main__":
