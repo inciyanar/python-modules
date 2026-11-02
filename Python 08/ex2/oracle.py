@@ -1,26 +1,52 @@
 import os
-from dotenv import load_dotenv
+import sys
 
-load_dotenv()
-config_names = ["MATRIX_MODE", "DATABASE_URL", "API_KEY", "LOG_LEVEL", "ZION_ENDPOINT"]
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    print("python-dotenv is not installed.")
+    print("Install it with: pip install -r requirements.txt")
+    sys.exit(1)
+
+
+config_names = ["MATRIX_MODE", "DATABASE_URL", "API_KEY",
+                "LOG_LEVEL", "ZION_ENDPOINT"]
+
 
 def configuration(config_names: list[str]) -> dict[str, str]:
-    result: dict[str: str] = {}
+    result: dict[str, str] = {}
     for name in config_names:
-        output=os.getenv(name)
-        if not output :
+        output = os.getenv(name)
+        if not output:
             result[name] = "[MISSING]"
         else:
             result[name] = output
-    return(result)
+    return result
 
 
-if __name__ == "__main__":
-    output: dict[str, str] = configuration(config_names)
+def missing_warnings(output: dict[str, str]) -> None:
+    missing: list[str] = []
+    for name in output:
+        if output[name] == "[MISSING]":
+            missing.append(name)
+    if not missing:
+        return
+    print("Configuration warnings:")
+    for name in missing:
+        print(f"[WARNING] {name} is not set")
+    print("Copy .env.example to .env and fill in the values.")
+    print()
+
+
+def main() -> None:
+    load_dotenv()
+    output = configuration(config_names)
     print("ORACLE STATUS: Reading the Matrix...")
     print()
+    missing_warnings(output)
+
     print("Configuration loaded:")
-    print(f"Mode: {output["MATRIX_MODE"]}")
+    print(f"Mode: {output['MATRIX_MODE']}")
 
     if output["DATABASE_URL"] == "[MISSING]":
         print("Database: Missing")
@@ -36,7 +62,7 @@ if __name__ == "__main__":
     else:
         print("API Access: Authenticated")
 
-    print(f"Log Level: {output["LOG_LEVEL"]}")
+    print(f"Log Level: {output['LOG_LEVEL']}")
 
     if output["ZION_ENDPOINT"] == "[MISSING]":
         print("Zion Network: Offline")
@@ -50,7 +76,10 @@ if __name__ == "__main__":
         print("[OK] .env file properly configured")
     else:
         print("[WARNING] .env file not found")
-
     print("[OK] Production overrides available")
     print()
     print("The Oracle sees all configurations.")
+
+
+if __name__ == "__main__":
+    main()

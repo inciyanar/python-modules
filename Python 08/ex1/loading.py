@@ -46,6 +46,11 @@ def png_visualizer(data: "pandas.DataFrame") -> None:
 if __name__ == "__main__":
     print("LOADING STATUS: Loading programs...")
     print()
+    if "pypoetry" in sys.prefix:
+        print("Running in a Poetry environment")
+    else:
+        print("Running in a pip / venv environment")
+    print()
     print("Checking dependencies:")
     packages_to_check = ["pandas", "numpy", "matplotlib",]
     if not overall_checker(packages_to_check):

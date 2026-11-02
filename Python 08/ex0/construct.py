@@ -25,6 +25,8 @@ def main() -> None:
         print()
         print("Package installation path:")
         print(site.getsitepackages()[0])
+        print()
+        print("Global Python location:", sys.base_prefix)
     else:
         print("MATRIX STATUS: You're still plugged in")
         print()
