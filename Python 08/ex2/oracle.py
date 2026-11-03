@@ -46,7 +46,11 @@ def main() -> None:
     missing_warnings(output)
 
     print("Configuration loaded:")
-    print(f"Mode: {output['MATRIX_MODE']}")
+
+    if output["MATRIX_MODE"] == "[MISSING]":
+        print("Mode: Missing")
+    else:
+        print(f"Mode: {output['MATRIX_MODE']}")
 
     if output["DATABASE_URL"] == "[MISSING]":
         print("Database: Missing")
@@ -62,7 +66,10 @@ def main() -> None:
     else:
         print("API Access: Authenticated")
 
-    print(f"Log Level: {output['LOG_LEVEL']}")
+    if output["LOG_LEVEL"] == "[MISSING]":
+        print("Log Level: Missing")
+    else:
+        print(f"Log Level: {output['LOG_LEVEL']}")
 
     if output["ZION_ENDPOINT"] == "[MISSING]":
         print("Zion Network: Offline")

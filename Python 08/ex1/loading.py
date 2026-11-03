@@ -1,5 +1,10 @@
 import importlib
 import sys
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    import numpy
+    import pandas
 
 
 def package_checker(package: str) -> bool:
@@ -22,25 +27,26 @@ def overall_checker(packages_to_check: list[str]) -> bool:
 
 
 def generate_data() -> "numpy.ndarray":
-    import numpy
-    ran = numpy.random.default_rng()
+    import numpy as np
+    ran = np.random.default_rng()
     values = ran.normal(50, 10, 1000)
     return (values)
 
 
-def data_processor(data: list[int]) -> "DataFrame":
-    import pandas
-    data_frame = pandas.DataFrame({"signal": data})
-    print(data_frame["signal"].mean())
-    print(data_frame["signal"].min())
-    print(data_frame["signal"].max())
+def data_processor(data: "numpy.ndarray") -> "pandas.DataFrame":
+    import pandas as pd
+    data_frame = pd.DataFrame({"signal": data})
+    print("Mean:", data_frame["signal"].mean())
+    print("Min:", data_frame["signal"].min())
+    print("Max:", data_frame["signal"].max())
     return (data_frame)
 
 
 def png_visualizer(data: "pandas.DataFrame") -> None:
-    import matplotlib.pyplot
-    matplotlib.pyplot.plot(data["signal"])
-    matplotlib.pyplot.savefig("matrix_analysis.png")
+    import matplotlib.pyplot as plt
+    plt.plot(data["signal"])
+    plt.savefig("matrix_analysis.png")
+    plt.close()
 
 
 if __name__ == "__main__":
