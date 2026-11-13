@@ -108,3 +108,14 @@ if __name__ == "__main__":
     print(type(yasin))
     print(type(fatih))
     print(type(yasin))
+
+
+
+class Person:
+    pass
+
+
+class Student(Person):
+    pass
+
+obj = Student()
